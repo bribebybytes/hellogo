@@ -13,8 +13,8 @@ var AppPwd string
 var AppExtEndpoint string
 
 func Index(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("TKE_CLUSTER:", os.Getenv("TKE_CLUSTER"))
-	fmt.Fprint(w, "Welcome!\n This app is running on:"+os.Getenv("TKE_CLUSTER"))
+	fmt.Println("CLUSTER_REGION:", os.Getenv("CLUSTER_REGION"))
+	fmt.Fprint(w, "Welcome!\n This app is running on:"+os.Getenv("CLUSTER_REGION"))
 }
 
 func defHealthCheck(w http.ResponseWriter, r *http.Request) {
@@ -62,12 +62,12 @@ func callecho(w http.ResponseWriter, r *http.Request) {
 func printenv(w http.ResponseWriter, r *http.Request) {
 
 	envpath, _ := os.LookupEnv("ENVVARS_PATH")
-	clustername, _ := os.LookupEnv("TKE_CLUSTER")
+	clustername, _ := os.LookupEnv("CLUSTER_REGION")
 	appversion, _ := os.LookupEnv("APP_VERSION")
 	dbusername, _ := os.LookupEnv("DB_UNAME")
 	dbpwd, _ := os.LookupEnv("DB_PWD")
 
-	fmt.Fprint(w, "TKE_CLUSTER:", clustername, "\n")
+	fmt.Fprint(w, "CLUSTER_REGION:", clustername, "\n")
 	fmt.Fprint(w, "ENVVARS_PATH:", envpath, "\n")
 	fmt.Fprint(w, "APP_VERSION:", appversion, "\n")
 	fmt.Fprint(w, "DB_UNAME:", dbusername, "\n")
